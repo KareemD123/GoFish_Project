@@ -126,7 +126,7 @@ function removeItemAll(arr, value) {
         for (i = 0; i < otherHand.length; i++) {
             if (otherHand[i] === secondArray) {
                 otherHand.splice(i, 1);
-            } else {alert ("no cards match");}
+            } else {console.log("no cards match");}
         }
         console.log(newArray);
         console.log(myHand);
@@ -135,7 +135,12 @@ function removeItemAll(arr, value) {
     };
 
 
-
+// let bigArray = [0,1,2,3,4,5];
+// let mybigarray = [5];
+// // bigArray.unshift((mybigarray.shift()));
+// bigArray.push((mybigarray.pop()));
+// console.log(bigArray);
+// console.log(mybigarray);
 
 
 
