@@ -24,5 +24,12 @@ div {
     background-color: green;
 }
 
+.deckHand div {
+    display: flexbox;
+    flex-direction: auto;
+    padding: 10px;
+
+}
+
 
 
