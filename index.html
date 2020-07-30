@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,36 +10,30 @@
     <script defer src="app.js"></script>
     <title>Document</title>
 </head>
+
 <body>
-    <section id= "myHand">
+    <div class = container>
+    <section id="myHand">
     </section>
+    
 
     <section id="deckHand">
         <div>
-            <select id="cardList">
-                <option>Pick up card from Deck</option>
-            </select><br>
-            <select id="cardList">
-                <option>Choose a Card</option>
-            </select>
-            <p>You will be given a set of cards. Click on your set of cards to call on that card.</p>
-            
         </div>
+        <div class="card back blue">Hello</div>
 
-        <div class = "card back blue">Hello</div>
-
-        <div>
+        <div id=theButtonDiv>
             <!-- <input id="input" type = "text"></input> -->
-                <!-- <button type = "button" id = 'submitButton'>Submit card choice</button><br> -->
-                <button type = "button" id = 'pickUpButton'>GoFish!</button><br>
-                <!-- <button type = "button" id = 'opponentPickUpButton'>Let Opponent Pick up Card from Deck</button> -->
-                <button type = "button" id = 'restartButton'>Restart Game</button>
+            <!-- <button type = "button" id = 'submitButton'>Submit card choice</button><br> -->
+            <button type="button" id='pickUpButton'>GoFish!</button><br>
+            <!-- <button type = "button" id = 'opponentPickUpButton'>Let Opponent Pick up Card from Deck</button> -->
+            <button type="button" id='restartButton'>Restart Game</button><br>
         </div>
     </section>
 
-    <section id = "otherHand" >
+    <section id="otherHand">
     </section>
-
-    
+</div>
 </body>
+
 </html>
