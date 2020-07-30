@@ -22,6 +22,7 @@ const namesDeck = ["Ace of Spades", "2 of Spades", "3 of Spades", "4 of Spades",
 let deck = Array.from(new Array(52), (x, i) => i);
 let myCardClass, myNumberAlone2, myNumberAlone3, resultOtherHand, matchArray, swap, swap1, swap2, otherHand1;
 let count1, count2, count3, count4, count5, count6, count7, count8, count9, count10, count11, count12, count13;
+let resultMyHand;
 
 
 function shuffle(numbersDeck) {
@@ -96,8 +97,8 @@ function reload() {
     location.reload();
     return false;
 }
-document.cookie = None;Secure;
-let player = new Audio('https://www.soundsnap.com/streamers/play.php?id=1596146059.2478:b6e26278aa24c13a240259c3d02c05765ee0c5c6:06fed181a5afe09aa6a9088f92941547fa1bb832689a359bb2a4ee3d4ea3a28b7e4117e175c02514666e5ff790a95ce76f96195d8b8d20a54ee4711b8ef979681a4b527ed49f40cfbc6ea7fae8a3fa02fdcd454c95d23811fbe53abfca3f9c5900efe6cf9a3c21398d20cd82eaab0f70bec018e79227cb363923aea19f90e191de93b8ab23460951101983673e726f1c3a3f715576381aca9b7d0806b5ca070eca4121e75a85b0a9eb2af0b6b7b55a4f82cfe91b5eb9e61f306c52812853d699a73b3a31b4e3460d615b53e7ac12a6515a8bfa6d345a9bcc55c3605362df11c57f5930426934409005c93de09c40d40471e367534e016ddbaa03a638ac88ece944ea90a8b65ef2e7062f192af9e2a75ff89591870f66b432bbf297c0152b3e7c170701b0fbdd04ecb6f427524c078dd2ddc4aeed7a55fbf99b4a2c38ec5d86bb');SameSite=None;Secure;
+// document.cookie = None;Secure;
+let player = new Audio('https://www.soundsnap.com/streamers/play.php?id=1596146059.2478:b6e26278aa24c13a240259c3d02c05765ee0c5c6:06fed181a5afe09aa6a9088f92941547fa1bb832689a359bb2a4ee3d4ea3a28b7e4117e175c02514666e5ff790a95ce76f96195d8b8d20a54ee4711b8ef979681a4b527ed49f40cfbc6ea7fae8a3fa02fdcd454c95d23811fbe53abfca3f9c5900efe6cf9a3c21398d20cd82eaab0f70bec018e79227cb363923aea19f90e191de93b8ab23460951101983673e726f1c3a3f715576381aca9b7d0806b5ca070eca4121e75a85b0a9eb2af0b6b7b55a4f82cfe91b5eb9e61f306c52812853d699a73b3a31b4e3460d615b53e7ac12a6515a8bfa6d345a9bcc55c3605362df11c57f5930426934409005c93de09c40d40471e367534e016ddbaa03a638ac88ece944ea90a8b65ef2e7062f192af9e2a75ff89591870f66b432bbf297c0152b3e7c170701b0fbdd04ecb6f427524c078dd2ddc4aeed7a55fbf99b4a2c38ec5d86bb');
 function pickUpCard() {
     if (numbersDeck[0] != undefined){
     let randomCard = numbersDeck.splice(0, 1)[0];
@@ -244,7 +245,7 @@ function compareChoices(evt) {
     winner();
 }
 
-let resultMyHand;
+
 function winner() {
 
     resultMyHand = [];
@@ -536,16 +537,16 @@ if (count2.length == 4) {
 
 let player2 = new Audio('http://soundbible.com/mp3/Short_triumphal_fanfare-John_Stracke-815794903.mp3');
 
-let totalScore;
-let scoreBoard = document.getElementById('theButtonDiv');
-let newScoreBoard = document.createElement('p');
-let finalScore = scoreBoard.appendChild(newScoreBoard);
+let totalScore, scoreBoard, newScoreBoard, finalScore, totalScore2, scoreBoard2, newScoreBoard2,finalScore2;
+scoreBoard = document.getElementById('theButtonDiv');
+newScoreBoard = document.createElement('p');
+finalScore = scoreBoard.appendChild(newScoreBoard);
 
-let totalScore2;
-let scoreBoard2 = document.getElementById('theButtonDiv');
+totalScore2;
+scoreBoard2 = document.getElementById('theButtonDiv');
 // let newScoreBoard2 = document.createElement('br');
-let newScoreBoard2 = document.createElement('p');
-let finalScore2 = scoreBoard2.appendChild(newScoreBoard2);
+newScoreBoard2 = document.createElement('p');
+finalScore2 = scoreBoard2.appendChild(newScoreBoard2);
 
 
 
