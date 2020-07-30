@@ -1,38 +1,87 @@
 /* use flex box for cards  */
+.container {
+  text-align: center;
+  margin: auto 0;
+  background-image: linear-gradient(45deg, green, lime, green);
+}
+
+/* font-family */
+
 
 body {
+    margin: auto;
+    margin-top: 100px;
+    justify-content: center;  
     display: flex;
-    border: 2px solid blue; 
+    border: 7px solid brown; 
+    border-radius: 2.5%;
     flex-direction: column;
-    max-height: 100vh;
-    width: 100%;
+    height: fit-content;
+    width: 80%;
+    background-image: url("../images/clubs/clubs-K.svg");
+    background-size: contain;
+    
+    
+
   }
+
+p {
+  font-weight: bold;
+  /* font-family:  */
+  font-size: 18px;
+}
 
 section {
     display: flex;
     flex-grow: 1;
     border: 1px solid black;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
+    
+    /* background-color: green; */
+    
 }
 
+#deckHand .card {
+  filter: drop-shadow(5px 5px);
+}
 
-div {
+#otherHand > div {
+  /* filter: blur(10px); */
+  background-image: url("../images/backs/blue.svg"); 
+  border: 1px black;
+  border-radius: 10%;
+  width: 50px;
+  flex-wrap: wrap;
+  margin: 0 0 0 0;
+  height: 120px;
+  width: 75px;
+}
+#myHand > div {
     /* flex-grow: 1;  */
     border: 1px solid black;
-    height: 300px;
-    /* justify-content: center; 
-    align-content: center; */
-    /* padding: 0 100px 0 100px;  */
-    background-color: green;
+    border-radius: 10%
+    /* height: 30%; */
+    background-color: white;
+    height: 120px;
+    width: 75px;
+    margin: 0 0 0 0;
 }
 
-.deckHand div {
-    display: flex;
-    flex-direction: auto;
-    padding: 10px;
-
+#deckHand > div {
+  
 }
+
+#pickUpButton {
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+#restartButton {
+    padding: 5px;
+    margin-bottom: 5px;
+  }
 
 
 

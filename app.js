@@ -20,6 +20,9 @@ const namesDeck = ["Ace of Spades", "2 of Spades", "3 of Spades", "4 of Spades",
     "Ace of Clubs", "2 of Clubs", "3 of Clubs", "4 of Clubs", "5 of Clubs", "6 of Clubs", "7 of Clubs", "8 of Clubs", "9 of Clubs", "10 of Clubs", "Jack of Clubs", "Queen of Clubs", "King of Clubs"];
 
 let deck = Array.from(new Array(52), (x, i) => i);
+let myCardClass, myNumberAlone2, myNumberAlone3, resultOtherHand, matchArray, swap, swap1, swap2, otherHand1;
+let count1, count2, count3, count4, count5, count6, count7, count8, count9, count10, count11, count12, count13;
+
 
 function shuffle(numbersDeck) {
     let repeat = numbersDeck.length;
@@ -41,27 +44,8 @@ let otherPoints = 0;
 input_card = 0;
 
 
-// initiation function
-
-// for (i = 0; i < numbersDeck.length; i++) {
-//     let dropDownList = document.getElementById('cardList');
-//     let newOption = document.createElement('option');
-//     dropDownList.appendChild(newOption);
-//     let deckId = numbersDeck[i];
-//     newOption.classList.add(deckId);
-//     newOption.innerHTML = namesDeck[i];
-// }
-
-
 let myBeginningHand = [];
 for (let i = 0; i < 7; i++) {
-    // function createCard(){
-    //     let randomCardClass = numbersDeck[Math.floor(Math.random() * numbersDeck.length)];
-    //     for (let i=0; i < myHand.length; i++){
-    //         if myHand[i] 
-    //     }
-    // }
-    // let randomCardClass = numbersDeck[Math.floor(Math.random() * numbersDeck.length)];
     let randomCardClass = myHand.push(numbersDeck.splice(0, 1)[0]);
     shuffle(numbersDeck);
     let myHand1 = document.getElementById('myHand');
@@ -70,7 +54,6 @@ for (let i = 0; i < 7; i++) {
     myFirstCards.classList.add('card');
     myFirstCards.classList.add(myHand[i]);
     myFirstCards.addEventListener('click', compareChoices)
-    // mychoice = myHand1.addEventListener('click', compareMyCards);
 }
 
 
@@ -87,7 +70,6 @@ for (let i = 0; i < 7; i++) {
     opponentsFirstCards.classList.add(otherHand[i]);
     // opponentsFirstCards.classList.add('back');
     // opponentsFirstCards.addEventListener('click', compareChoices)
-    // mychoice = otherHand1.addEventListener('click', compareOpponentsCards);
 }
 
 console.log(otherHand);
@@ -99,10 +81,16 @@ console.log(numbersDeck);
 // document.getElementById('submitButton').addEventListener('click', compareChoices);
 
 document.getElementById('pickUpButton').addEventListener('click', pickUpCard);
+document.querySelector('.blue').addEventListener('click', pickUpCard);
 
 // document.getElementById('opponentPickUpButton').addEventListener('click', opponentPickUpCard);
 
 document.getElementById('restartButton').addEventListener('click', reload);
+
+function doNothing(){
+    console.log('There are no more cards left!');
+}
+
 
 function reload() {
     location.reload();
@@ -110,25 +98,27 @@ function reload() {
 }
 
 
-
-
 function pickUpCard() {
-    // let randomCardClass = numbersDeck[Math.floor(Math.random() * numbersDeck.length)];
-    // myHand.push(randomCardClass);
-    let randomCard = numbersDeck.splice(0, 1)[0]
+    if (numbersDeck[0] != undefined){
+    let randomCard = numbersDeck.splice(0, 1)[0];
     myHand.push(randomCard);
     let myHand1 = document.getElementById('myHand');
     let myFirstCards = document.createElement('div');
     myHand1.appendChild(myFirstCards);
     myFirstCards.classList.add('card');
     myFirstCards.classList.add(randomCard);
-    myFirstCards.addEventListener('click', compareChoices)
-    console.log(randomCard)
-    console.log(myHand)
+    myFirstCards.addEventListener('click', compareChoices);
+    console.log(randomCard);
+    console.log(myHand);
+    winner();}
+    else { document.getElementById('pickUpButton').innerHTML = 'No Cards Left!';
+    document.querySelector('.blue').addEventListener('click', doNothing);
+};
 }
 
+
 function opponentPickUpCard() {
-    let randomCard = numbersDeck.splice(0, 1)[0]
+    let randomCard = numbersDeck.splice(0, 1)[0];
     otherHand.push(randomCard);
     let otherHand1 = document.getElementById('otherHand');
     let opponentsFirstCards = document.createElement('div');
@@ -137,8 +127,10 @@ function opponentPickUpCard() {
     opponentsFirstCards.classList.add(randomCard);
     // opponentsFirstCards.classList.add('back');
     // opponentsFirstCards.addEventListener('click', compareChoices)
-    console.log(randomCard)
-    console.log(otherHand)
+    console.log(randomCard);
+    console.log(otherHand);
+    winner();
+
 }
 
 
@@ -153,7 +145,6 @@ function removeItemAll(arr, value) {
     }
 }
 
-
 function getAllIndices(arr, value) {
     var indices = [], i;
     for (i = 0; i < arr.length; i++)
@@ -164,45 +155,22 @@ function getAllIndices(arr, value) {
 
 function compareChoices(evt) {
     console.log(myHand);
-    var myCardClass = evt.target.className;
-    var myNumberAlone2 = myCardClass.match(/\d/g);
-    var myNumberAlone3 = myNumberAlone2.join('');
+    myCardClass = evt.target.className;
+    myNumberAlone2 = myCardClass.match(/\d/g);
+    myNumberAlone3 = myNumberAlone2.join('');
     console.log(myNumberAlone3);
     console.log(myNumberAlone2);
     console.log(typeof (myNumberAlone3));
-
-
-    // var myNumberCardClass = myCardClass.split(' ').slice(1);
-    // var myNumberCardClass2 = myNumberCardClass.toString();
-    // var myNumberAlone = myNumberCardClass2.split('').slice(1, 3);
-    // var myNumber = myNumberAlone.shift();
-    // var otherCardClass;
-    // // console.log(myNumberCardClass)
-    // console.log(myNumberAlone)
-    // console.log(myCardClass);
-    // let newArray = otherHand.filter(function (value) {
-    //     return value == myNumberCardClass
-    // });
 
     let resultOtherHand = [];
     for (let i = 0; i < otherHand.length; i++) {
         var otherNumberAlone2 = otherHand[i].match(/\d/g);
         var otherNumberAlone3 = otherNumberAlone2.join('');
-        // let newOtherHand = otherHand[i].split('')[otherHand[i].split('').length - 1];
         resultOtherHand.push(otherNumberAlone3);
     }
-    console.log(resultOtherHand);
-    // let matchNumber = resultOtherHand.filter(function (value) {});
 
     let matchArray = getAllIndices(resultOtherHand, myNumberAlone3)
     console.log(matchArray[0])
-
-    // let secondArray = newArray.toString();
-    // let thirdArray = secondArray.split('').slice(1, 2);
-    // console.log(otherHand);
-
-    // let emptyArray = [];
-    // console.log(emptyArray[0]);
 
     if (matchArray[0] == undefined) {
         alert('GoFish!');
@@ -215,6 +183,8 @@ function compareChoices(evt) {
         otherHand[matchArray[0]] = swap;
 
         let otherHand1 = document.querySelector(`.${otherHand[0]}`);
+        // let otherHand1 = document.querySelector('back');
+
         otherHand1.remove();
         otherHand.shift();
 
@@ -235,6 +205,8 @@ function compareChoices(evt) {
         otherHand[matchArray[1] - 1] = swap1;
 
         let otherHand1 = document.querySelector(`.${otherHand[0]}`);
+        // let otherHand1 = document.querySelector('back');
+
         otherHand1.remove();
         otherHand.shift();
 
@@ -254,6 +226,8 @@ function compareChoices(evt) {
         otherHand[matchArray[2] - 2] = swap2;
 
         let otherHand1 = document.querySelector(`.${otherHand[0]}`);
+        // let otherHand1 = document.querySelector('back');
+
         otherHand1.remove();
         otherHand.shift();
 
@@ -265,90 +239,311 @@ function compareChoices(evt) {
         myFirstCards.addEventListener('click', compareChoices)
 
     }
+    computerTurn();
+    // setTimeout(computerTurn, 1500);
+    winner();
+}
 
-    console.log(myHand);
-    console.log(otherHand);
+let resultMyHand;
+function winner() {
 
-    // function checkForFullStack(myHand){
-    // make a loop to filter element
-    // let count1 = getAllIndices(resultOtherHand, '1');
-    let count2 = getAllIndices(resultOtherHand, '2');
-    let count4 = getAllIndices(resultOtherHand, '4');
-    let count5 = getAllIndices(resultOtherHand, '5');
-    let count6 = getAllIndices(resultOtherHand, '6');
-    let count7 = getAllIndices(resultOtherHand, '7');
-    let count8 = getAllIndices(resultOtherHand, '8');
-    let count9 = getAllIndices(resultOtherHand, '9');
-    let count10 = getAllIndices(resultOtherHand, '10');
-    let count11 = getAllIndices(resultOtherHand, '11');
-    let count12 = getAllIndices(resultOtherHand, '12');
-    let count13 = getAllIndices(resultOtherHand, '13');
+    resultMyHand = [];
+    for (let i = 0; i < myHand.length; i++) {
+        var otherNumberAlone2 = myHand[i].match(/\d/g);
+        var otherNumberAlone3 = otherNumberAlone2.join('');
+        resultMyHand.push(otherNumberAlone3);
+    }
+    
+    resultOtherHand = [];
+    for (let i = 0; i < otherHand.length; i++) {
+        var otherNumberAlone2 = otherHand[i].match(/\d/g);
+        var otherNumberAlone3 = otherNumberAlone2.join('');
+        resultOtherHand.push(otherNumberAlone3);
+    }
 
-count1 = [1, 2, 4];
-    if (count1.length == 3) { 
-        for (let i = 0; i < 4; i++){
-            alert('hello');
-            count1.splice(count1[i], 1) };}
-console.log(count1)
+// This part is for myHand
+    count1 = getAllIndices(resultMyHand, '1');
+    count2 = getAllIndices(resultMyHand, '2');
+    count3 = getAllIndices(resultMyHand, '3');
+    count4 = getAllIndices(resultMyHand, '4');
+    count5 = getAllIndices(resultMyHand, '5');
+    count6 = getAllIndices(resultMyHand, '6');
+    count7 = getAllIndices(resultMyHand, '7');
+    count8 = getAllIndices(resultMyHand, '8');
+    count9 = getAllIndices(resultMyHand, '9');
+    count10 = getAllIndices(resultMyHand, '10');
+    count11 = getAllIndices(resultMyHand, '11');
+    count12 = getAllIndices(resultMyHand, '12');
+    count13 = getAllIndices(resultMyHand, '13');
 
-    if (count2.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count2[i], 1) };}
-     };
+    // "use strict";
 
-     let count3 = getAllIndices(resultOtherHand, '3');
+    if (count1.length == 4) {
+        for (let i = 0; i < 4; i++) {
+            
+            let removeCard1 = document.querySelector(`.${myHand[count1[i]]}`)
+            removeCard1.remove();
+            myHand.splice(count1[i], 1, 'nocard99')
+        };
+    }
+    if (count6.length == 4) {
+        for (let i = 0; i < 4; i++) {
+            
+            let removeCard6 = document.querySelector(`.${myHand[count6[i]]}`)
+            removeCard6.remove();
+            myHand.splice(count6[i], 1, 'nocard99')
+        }
+    }
+    if (count7.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-     if (count3.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count3[i], 1) };};
+            
+            let removeCard7 = document.querySelector(`.${myHand[count7[i]]}`)
+            removeCard7.remove();
+            myHand.splice(count7[i], 1, 'nocard99')
+        }
+    }
+    if (count8.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    // if (count3.length == 4) { 
-    //     for (let i = 0; i < 4; i++){
-    //         myHand.splice(count3[i], 1) } ;}
+           
+            let removeCard8 = document.querySelector(`.${myHand[count8[i]]}`)
+            removeCard8.remove();
+             myHand.splice(count8[i], 1, 'nocard99')
+        }
+    }
+    if (count9.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    if (count4.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count4[i], 1) } };
+            
+            let removeCard9 = document.querySelector(`.${myHand[count9[i]]}`)
+            removeCard9.remove();
+            myHand.splice(count9[i], 1, 'nocard99')
+        }
+    }
+    if (count10.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    if (count5.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count5[i], 1) } };
+            
+            let removeCard10 = document.querySelector(`.${myHand[count10[i]]}`)
+            removeCard10.remove();
+            myHand.splice(count10[i], 1, 'nocard99')
+        }
 
-    if (count6.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count6[i], 1) } };
+    }
+    if (count11.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    if (count7.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count7[i], 1) } };
+            
+            let removeCard11 = document.querySelector(`.${myHand[count11[i]]}`)
+            removeCard11.remove()
+            myHand.splice(count11[i], 1, 'nocard99')
+        }
 
-    if (count8.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count8[i], 1) } };
+    }
+    if (count12.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    if (count9.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count9[i], 1) } };
+            
+            let removeCard12 = document.querySelector(`.${myHand[count12[i]]}`)
+            removeCard12.remove()
+            myHand.splice(count12[i], 1, 'nocard99')
+        }
 
-    if (count10.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count10[i], 1) } };
+    }
+    if (count13.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    if (count11.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count11[i], 1) } };
+            
+            let removeCard13 = document.querySelector(`.${myHand[count13[i]]}`)
+            removeCard13.remove()
+            myHand.splice(count13[i], 1, 'nocard99')
+        }
 
-    if (count12.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count12[i], 1) } };
+    }
+    if (count5.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    if (count13.length == 4) { 
-        for (let i = 0; i < 4; i++){
-            myHand.splice(count13[i], 1) } };
+            
+            let removeCard5 = document.querySelector(`.${myHand[count5[i]]}`)
+            removeCard5.remove();
+            myHand.splice(count5[i], 1, 'nocard99')
+        }
+    }
+    if (count4.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-    // }
+            
+            let removeCard4 = document.querySelector(`.${myHand[count4[i]]}`)
+            removeCard4.remove();
+            myHand.splice(count4[i], 1, 'nocard99')
+        }
+    }
+    if (count3.length == 4) {
+        for (let i = 0; i < 4; i++) {
 
-setTimeout(computerTurn, 3500);
+            
+            let removeCard3 = document.querySelector(`.${myHand[count3[i]]}`)
+            removeCard3.remove();
+            myHand.splice(count3[i], 1, 'nocard99')
+        };
+    }
+    if (count2.length == 4) {
+        for (let i = 0; i < 4; i++) {
+
+            
+            let removeCard2 = document.querySelector(`.${myHand[count2[i]]}`)
+            removeCard2.remove();
+            myHand.splice(count2[i], 1, 'nocard99')
+        };
+    }
+
+
+// This part is for the otherHand
+count1 = getAllIndices(resultOtherHand, '1');
+count2 = getAllIndices(resultOtherHand, '2');
+count3 = getAllIndices(resultOtherHand, '3');
+count4 = getAllIndices(resultOtherHand, '4');
+count5 = getAllIndices(resultOtherHand, '5');
+count6 = getAllIndices(resultOtherHand, '6');
+count7 = getAllIndices(resultOtherHand, '7');
+count8 = getAllIndices(resultOtherHand, '8');
+count9 = getAllIndices(resultOtherHand, '9');
+count10 = getAllIndices(resultOtherHand, '10');
+count11 = getAllIndices(resultOtherHand, '11');
+count12 = getAllIndices(resultOtherHand, '12');
+count13 = getAllIndices(resultOtherHand, '13');
+
+// "use strict";
+
+if (count1.length == 4) {
+    for (let i = 0; i < 4; i++) {
+        otherHand.splice(count1[i], 1, 'nocard99')
+    };
+}
+if (count6.length == 4) {
+    for (let i = 0; i < 4; i++) {
+        otherHand.splice(count6[i], 1, 'nocard99')
+    }
+}
+if (count7.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count7[i], 1, 'nocard99')
+    }
+}
+if (count8.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count8[i], 1, 'nocard99')
+    }
+}
+if (count9.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count9[i], 1, 'nocard99')
+    }
+}
+if (count10.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count10[i], 1, 'nocard99')
+    }
+
+}
+if (count11.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count11[i], 1, 'nocard99')
+    }
+
+}
+if (count12.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count12[i], 1, 'nocard99')
+    }
+
+}
+if (count13.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count13[i], 1, 'nocard99')
+    }
+
+}
+if (count5.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count5[i], 1, 'nocard99')
+    }
+}
+if (count4.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count4[i], 1, 'nocard99')
+    }
+}
+if (count3.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count3[i], 1, 'nocard99')
+    };
+}
+if (count2.length == 4) {
+    for (let i = 0; i < 4; i++) {
+
+        otherHand.splice(count2[i], 1, 'nocard99')
+    };
+}
+
+    let matchScore = 0;
+    for (let i = 0; i < myHand.length; i++) {
+        if (myHand[i] == 'nocard99') {
+            matchScore = matchScore + 1;
+        };
+    }
+
+    if (matchScore == 52) {
+        alert('YOU HAVE WON!');
+    }
+
+
+    let othermatchScore = 0;
+    for (let i = 0; i < otherHand.length; i++) {
+        if (otherHand[i] == 'nocard99') {
+            othermatchScore = othermatchScore + 1;
+        };
+
+    }
+
+    if (othermatchScore == 52) {
+        alert('YOU HAVE LOST!');
+    }
+
+    totalScore = matchScore / 4;
+    let scoreText = "Your score is " + totalScore;
+    finalScore.innerHTML = scoreText;
+    console.log(totalScore);
+
+    totalScore2 = othermatchScore / 4;
+    let scoreText2 = "Opponent's score is " + totalScore2;
+    finalScore2.innerHTML = scoreText2;
+    console.log(totalScore2);
+}
+
+
+let totalScore;
+let scoreBoard = document.getElementById('theButtonDiv');
+let newScoreBoard = document.createElement('p');
+let finalScore = scoreBoard.appendChild(newScoreBoard);
+
+let totalScore2;
+let scoreBoard2 = document.getElementById('theButtonDiv');
+// let newScoreBoard2 = document.createElement('br');
+let newScoreBoard2 = document.createElement('p');
+let finalScore2 = scoreBoard2.appendChild(newScoreBoard2);
+
 
 
 
@@ -361,34 +556,15 @@ function computerTurn() {
     console.log(myNumberAlone2);
     console.log(typeof (myNumberAlone3));
 
-    // var myNumberCardClass = myCardClass.split(' ').slice(1);
-    // var myNumberCardClass2 = myNumberCardClass.toString();
-    // var myNumberAlone = myNumberCardClass2.split('').slice(1, 3);
-    // var myNumber = myNumberAlone.shift();
-    // var otherCardClass;
-    // // console.log(myNumberCardClass)
-    // console.log(myNumberAlone)
-    // console.log(myCardClass);
-    // let newArray = otherHand.filter(function (value) {
-    //     return value == myNumberCardClass
-    // });
-
     let resultOtherHand = [];
     for (let i = 0; i < myHand.length; i++) {
         var otherNumberAlone2 = myHand[i].match(/\d/g);
         var otherNumberAlone3 = otherNumberAlone2.join('');
-        // let newOtherHand = otherHand[i].split('')[otherHand[i].split('').length - 1];
         resultOtherHand.push(otherNumberAlone3);
     }
     console.log(resultOtherHand);
-    // let matchNumber = resultOtherHand.filter(function (value) {});
-
     let matchArray = getAllIndices(resultOtherHand, myNumberAlone3)
     console.log(matchArray)
-
-    // let secondArray = newArray.toString();
-    // let thirdArray = secondArray.split('').slice(1, 2);
-    // console.log(otherHand);
 
     if (matchArray[0] == undefined) {
         opponentPickUpCard();
@@ -410,8 +586,9 @@ function computerTurn() {
         myHand1.appendChild(myFirstCards);
         myFirstCards.classList.add('card');
         myFirstCards.classList.add(otherHand[otherHand.length - 1]);
+        // myFirstCards.classList.add('back');
         myFirstCards.addEventListener('click', compareChoices)
-
+        alert('Opponent has taken one of your cards!');
     }
 
     if (matchArray[1] != undefined) {
@@ -431,6 +608,7 @@ function computerTurn() {
         myFirstCards.classList.add('card');
         myFirstCards.classList.add(otherHand[otherHand.length - 1]);
         myFirstCards.addEventListener('click', compareChoices)
+        alert('Opponent has taken two of your cards!');
 
     }
 
@@ -450,6 +628,7 @@ function computerTurn() {
         myFirstCards.classList.add('card');
         myFirstCards.classList.add(otherHand[otherHand.length - 1]);
         myFirstCards.addEventListener('click', compareChoices)
+        alert('Opponent has taken three of your cards!');
 
     }
 
@@ -457,170 +636,6 @@ function computerTurn() {
     console.log(otherHand);
 
 };
-
-
-
-
-// function fullDeck() {
-
-//     let resultMyHand2 = [];
-//     for (let i = 0; i < myHand.length; i++) {
-//         let newOtherHand = myHand[i].split('')[myHand[i].split('').length - 1];
-//         resultMyHand2.push(newOtherHand);
-//     }
-
-//     let keys = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K'];
-//     for (let i = 0; i < resultMyHand2.length; i++) {
-//         let onlyNumbers = resultMyHand2.filter(x => x == keys[i]).length == 1;
-//         if (resultMyHand2.filter(x => x == keys[i]).length == 4) { console.log('This ' + keys[i] + 'matches!') };
-//         // remove the 4 elements from array
-//         console.log(onlyNumbers);
-//     }
-
-//     // for other hand now
-
-//     let resultOtherHand2 = [];
-//     for (let i = 0; i < otherHand.length; i++) {
-//         let newOtherHand = otherHand[i].split('')[otherHand[i].split('').length - 1];
-//         resultOtherHand2.push(newOtherHand);
-//     }
-
-//     for (let i = 0; i < resultOtherHand2.length; i++) {
-//         let keys = ['A', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K']
-//         if (resultOtherHand2.filter(x => x === keys[i]).length == 4) {
-//             // remove the 4 elements from array
-//         };
-//     }
-// };
-// fullDeck();
-
-
-// let bigArray = [0,1,2,3,4,5];
-// let mybigarray = [5];
-// // bigArray.unshift((mybigarray.shift()));
-// bigArray.push((mybigarray.pop()));
-// console.log(bigArray);
-// console.log(mybigarray);
-
-
-// function removeChild(){
-//     $('#otherHand').remove('')
-// }
-
-
-// compareChoices();
-
-// function transfer(array1, card, array2){
-//     let transaction = array1.remove(card)
-//     console.log(transaction)
-// }
-
-
-// The chooseCard function sets the class of a new created div element in the deckHand section 
-// to equal the input from the class list options chosen and displays it
-// function chooseCard(){
-//     let chosenCard = document.getElementById('cardList');
-//     let cardInput = cardList.options[cardList.selectedIndex].text;
-//     document.getElementById('input').value = cardInput
-//     document.getElementById('input').id = cardId
-//     console.log(cardId);
-//     let newCard = document.getElementById('deckHand')
-//     let myDiv = document.createElement('div');
-//     newCard.appendChild(myDiv);
-//     myDiv.classList.add('card');
-//     myDiv.classList.add(cardInput);
-//     console.log(newCard);
-// }
-
-
-
-
-
-
-
-
-
-// class handCollection {
-//     constructor() {
-//         this.cards = [];
-//     }
-//     insert(incoming_card) {
-//         this.cards.push(incoming_card);
-//     }
-//     transfer(card, another_bunch) {
-//         this.cards = remove_item_from_array(this.cards, card);
-//         another_bunch.insert(card);
-//     }
-// }
-
-// function remove_item_from_array(arr, item) {
-//     let filtered = arr.filter(function (el) {
-//         return el != item;
-//     })
-// };
-
-function chooseCardForMyHand() {
-    let chosenCard = document.getElementById('cardList');
-    // let cardInput = cardList.options[cardList.selectedIndex].text;
-    // document.getElementById('input').value = cardInput
-    let cardId = cardList.options[cardList.selectedIndex].className;
-    console.log(cardList.options[cardList.selectedIndex].className);
-    // document.getElementById('input').className = cardId
-    console.log(cardId);
-    console.log(chosenCard);
-    let newCard = document.getElementById('myHand')
-    let myDiv = document.createElement('div');
-    newCard.appendChild(myDiv);
-    myDiv.classList.add('card');
-    myDiv.classList.add(cardId);
-    console.log(cardId);
-    console.log(newCard);
-    myHand.push(cardId);
-    console.log(myHand);
-}
-
-
-
-
-// function chooseCardForOtherHand(){
-//     let chosenCard = document.getElementById('cardList');
-//     let cardInput = cardList.options[cardList.selectedIndex].text;
-//     document.getElementById('input').value = cardInput
-//     document.getElementById('input').id = cardId
-//     console.log(cardId);
-//     console.log(chosenCard);
-//     let newCard = document.getElementById('otherHand')
-//     let myDiv = document.createElement('div');
-//     newCard.appendChild(myDiv);
-//     myDiv.classList.add('card');
-//     myDiv.classList.add(cardInput);
-//     console.log(newCard);
-
-// }
-
-
-
-// This class will take a card from the deck and add it from the deck array to
-//  to another array
-
-
-// let otherHand = new handCollection();
-// otherHand.insert(newCard);
-// console.log(otherHand);
-
-// myHand = new handCollection();
-// myHand.insert(cardId);
-// console.log(myHand);
-
-// let myHand = new handCollection();
-// .transfer("s09", my_hand);
-// let computer_hand = new handCollection();
-
-// let my_class = deck.cards[0];
-// document.getElementById('firstCard').addClass(my_class);
-
-
-
 
 // App's State Variables:
 // beginning of deck cards, random shuffling and distribution of deck cards to user and computer, hide the opponent's cards but display the users cards
